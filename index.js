@@ -18,7 +18,14 @@ mongoose
 app.get("/", (req, res) => {
   res.send("Hello from Node.js API 🚀");
 });
-
+app.get("/mongo-test", async (req, res) => {
+  try {
+    await mongoose.connection.db.admin().ping();
+    res.send("MongoDB is working 🚀");
+  } catch (err) {
+    res.send("MongoDB failed ❌");
+  }
+});
 // START SERVER
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);
