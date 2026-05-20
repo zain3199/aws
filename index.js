@@ -20,8 +20,8 @@ app.get("/", (req, res) => {
 });
 app.get("/mongo-test", async (req, res) => {
   try {
-    await mongoose.connection.db.admin().ping();
-    res.send("MongoDB is working 🚀");
+    const state = mongoose.connection.readyState;
+    res.send(`MongoDB state: ${state}`);
   } catch (err) {
     res.send("MongoDB failed ❌");
   }
